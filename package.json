@@ -4,17 +4,31 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
   },
-  "author": "",
+  "author": "Igbal Hasanli",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^1.20.0",
     "ejs": "^3.1.7",
     "express": "^4.18.1",
     "mongodb": "^4.5.0",
     "mongoose": "^6.3.2",
-    "nodemon": "^2.0.16"
-  }
+    "nodemon": "^2.0.16",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Igbal032/PropertyAgencyNodeJs.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Igbal032/PropertyAgencyNodeJs/issues"
+  },
+  "homepage": "https://github.com/Igbal032/PropertyAgencyNodeJs#readme",
+  "description": ""
 }
