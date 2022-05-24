@@ -24,7 +24,7 @@
             </span>
             <div class="ts-service-box-content">
               <h4>Ofisimizi ziyarət edin</h4>
-              <p>9051 Constra Incorporate, USA</p>
+              <p style="word-break: break-all;"><%= company==null ? '' : company.address%></p>
             </div>
           </div>
         </div><!-- Col 1 end -->
@@ -36,7 +36,7 @@
             </span>
             <div class="ts-service-box-content">
               <h4>Bizə e-poçt göndərin</h4>
-              <p>office@Constra.com</p>
+              <p><%= company==null ? '' : company.email%></p>
             </div>
           </div>
         </div><!-- Col 2 end -->
@@ -48,7 +48,7 @@
             </span>
             <div class="ts-service-box-content">
               <h4>Bizə Zəng Edin</h4>
-              <p>(+9) 847-291-4353</p>
+              <p><%= company==null ? '' : company.phone%></p>
             </div>
           </div>
         </div><!-- Col 3 end -->

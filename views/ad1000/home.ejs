@@ -8,7 +8,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-md-8 col-12">
                         <h4 class="text-center">Şirket Haqqında</h4>
-                        <form action="/ad1000/<%= company==null?'index':'editCompany'%>" method="post">
+                        <form action="/ad1000/<%= company==null?'index':'editCompany'%>" method="post" enctype="multipart/form-data">
                             <input name="cId" type="hidden" value="<%= company==null?'':company.id%>">
                             <div class="form-group">
                                 <label for="nameId">Şirkətin adı</label>
@@ -29,8 +29,8 @@
 
                             <div class="form-group">
                                 <label for="logoId">Logo</label>
-                                <input type="file" name="cLogo" class="form-control" id="logoId"
-                                    placeholder="Logo elave edin">
+                                <input type="file" name="image" class="form-control" id="logoId">
+
                             </div>
 
                             <div class="form-group">

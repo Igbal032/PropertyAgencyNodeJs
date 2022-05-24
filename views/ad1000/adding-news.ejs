@@ -8,10 +8,10 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-md-8 col-12">
                         <h4 class="text-center">Xəbər Əlavə et</h4>
-                        <form action="" method="post">
+                        <form action="/ad1000/news" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="nameId">Xəbərin adı</label>
-                                <input type="text" class="form-control" name="sName" id="nameId"
+                                <input type="text" class="form-control" name="nName" id="nameId"
                                     placeholder="Xidmətin adını daxil et">
                             </div>
 
@@ -23,8 +23,7 @@
 
                             <div class="form-group">
                                 <label for="imgPathId">Şəkil</label>
-                                <input type="file" name="nImg" class="form-control" id="imgPathId"
-                                    placeholder="Şəkil elave edin">
+                                <input type="file" name="image" class="form-control" id="imgPathId">
                             </div>
 
                             <div class="form-group">
@@ -38,5 +37,37 @@
                     </div>
                 </div>
             </div>
-            <div class="container" style="height: 100px"></div>
+
+            <div class="container" style="height: 100px">
+                <h3>Xidmətlər</h3>
+                <div class="row">
+                    <% for (let n of news) { %>
+                        <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="card" style="width: 100%; height: max-content;">
+                                <div class="imgDiv" style="height: 200px">
+                                    <img style='object-fit: cover;height: 100%;' class="card-img-top"
+                                        src="/<%= n.imgPath%>" alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%=n.title%>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%=n.description%>
+                                    </p>
+                                    <!-- <a href="#" class="btn btn-primary" disabled>Go somewhere</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+                </div>
+            </div>
+
+
+
+            <div class="container" style="height: 400px">
+                <div class="row">
+
+                </div>
+            </div>
             <%- include('../includes/end.ejs') %>

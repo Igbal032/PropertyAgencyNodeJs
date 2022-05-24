@@ -22,9 +22,22 @@ exports.homePage = ((req, res, next)=>{
 })
 
 exports.contact = ((req, res, next)=>{
-    res.status(200).render('contact',{
-        pageTitle: 'Contact',
-        company:null
+    Company.findOne().then((company) => {
+        if(company){
+          return  res.status(200).render('contact',{
+              pageTitle: 'Contact',
+              company:company
+          })
+        }
+        else{
+            return  res.status(200).render('contact',{
+                pageTitle: 'Contact',
+                company:null
+            })
+        }
+    })
+    .catch(err=>{
+        console.log(err)
     })
 })
 
