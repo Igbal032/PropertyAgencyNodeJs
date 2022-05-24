@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const company = require("../models/company");
 const Company = require("../models/company");
 const Service = require("../models/service");
+const Carousel = require("../models/carousel");
 const News = require("../models/news");
 
 exports.home = (req, res, next) => {
@@ -56,9 +57,23 @@ exports.news = (req, res, next) => {
 };
 
 exports.carousel = (req, res, next) => {
-  res.render("ad1000/adding-carousel", {
-    pageTitle: "Karusel",
-  });
+  Carousel.find().then(crs=>{
+    if(crs){
+      res.render("ad1000/adding-carousel", {
+        pageTitle: "Karusel",
+        carousels:crs
+      });
+    }
+    else{
+      res.render("ad1000/adding-carousel", {
+        pageTitle: "Karusel",
+        carousels:null
+      });
+    }
+  })
+  .catch(err=>{
+    console.log(er)
+  })
 };
 
 exports.addCompany = (req, res, next) => {
@@ -162,7 +177,6 @@ exports.addNews = (req, res, next) => {
   newNews
     .save()
     .then((result) => {
-      console.log(result + " RESULT")
       res.redirect("/ad1000/news")
     })
     .catch((err) => {
@@ -171,7 +185,23 @@ exports.addNews = (req, res, next) => {
 };
 
 exports.addCarousel = (req, res, next) => {
-  res.render("ad1000/adding-carousel", {
-    pageTitle: "Karusel",
+  const title = req.body.title;
+  const topic = req.body.topic;
+  const description = req.body.description;
+  const imgPath = req.file;
+
+  const newCarousel = new Carousel({
+    title:title,
+    topic:topic,
+    description:description,
+    imgPath:imgPath.path,
   });
+  newCarousel
+  .save()
+  .then(car=>{
+    res.redirect("/ad1000/carousel")
+  })
+  .catch(err=>{
+    console.log(err)
+  })
 };

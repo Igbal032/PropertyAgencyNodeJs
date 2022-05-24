@@ -1478,6 +1478,7 @@ ul.navbar-nav > li.header-get-a-quote:hover > a:after {
   display: inline-block;
   padding: 20px 30px;
   max-width: 650px;
+  min-width: 650px;
 }
 
 .box-slide-title {

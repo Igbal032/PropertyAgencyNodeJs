@@ -11,11 +11,11 @@ const { randomInt } = require("crypto");
 
 const app = express();
 const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (req, file, cb) => { 
     cb(null, "images");
   },
   filename: (req, file, cb) => {
-    cb(null,file.filename+'-'+ randomInt(2000)+new Date().toDateString()+file.originalname);
+    cb(null,file.filename + randomInt(2000)+'-'+ randomInt(2000)+new Date().toDateString()+file.originalname);
   },
 });
 

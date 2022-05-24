@@ -8,30 +8,55 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-md-8 col-12">
                         <h4 class="text-center">Carousel Əlavə et</h4>
-                        <form action="" method="post">
-
+                        <form action="/ad1000/carousel" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="titleId">Başlıq</label>
-                                <input type="text" name="cTitle" class="form-control" id="titleId"
+                                <input type="text" name="title" class="form-control" id="titleId"
                                     placeholder="Başlıq daxil et">
+                            </div>
+                            <div class="form-group">
+                                <label for="topicId">Mövzu</label>
+                                <input type="text" name="topic" class="form-control" id="topicId"
+                                    placeholder="Topic daxil et">
                             </div>
 
                             <div class="form-group">
                                 <label for="imgPathId">Şəkil</label>
-                                <input type="file" name="cImg" class="form-control" id="imgPathId"
-                                    placeholder="Şəkil elave edin">
+                                <input type="file" class="form-control" id="imgPathId" name="image">
                             </div>
 
                             <div class="form-group">
                                 <label for="descriptionId">Təsviri</label>
-                                <textarea name="cDescription" class="form-control" id="descriptionId"
+                                <textarea name="description" class="form-control" id="descriptionId"
                                     placeholder="Təsviri daxil et" rows="5"></textarea>
                             </div>
-
                             <button type="submit" class="btn btn-primary">Əlavə et</button>
                         </form>
                     </div>
                 </div>
             </div>
+
+            
+            <div class="container" style="height: 100px">
+                <h3>Xidmətlər</h3>
+                <div class="row">
+                    <% for (let carousel of carousels) { %>
+                        <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="card" style="width: 100%; height: max-content;">
+                                <div class="imgDiv" style="height: 200px">
+                                    <img style='object-fit: cover;height: 100%;' class="card-img-top" src="/<%= carousel.imgPath%>" alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title"><%=carousel.title%></h5>
+                                  <h5 class="card-topic"><%=carousel.topic%></h5>
+                                  <p class="card-text"><%=carousel.description%></p>
+                                  <!-- <a href="#" class="btn btn-primary" disabled>Go somewhere</a> -->
+                                </div>
+                              </div>    
+                        </div>
+                        <%}%>
+                </div>
+            </div>
+
             <div class="container" style="height: 100px"></div>
             <%- include('../includes/end.ejs') %>
