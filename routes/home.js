@@ -13,11 +13,11 @@ router.get("/about",homeController.about)
 
 router.get("/news",homeController.news)
 
-router.get("/news1",homeController.singleNews)
+router.get("/news/:newsId",homeController.singleNews)
 
 router.get("/services",homeController.services)
 
-router.get("/services1",homeController.singleService)
+router.get("/services/:serviceId",homeController.singleService)
 
 router.get("/projects",homeController.projects)
 

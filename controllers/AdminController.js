@@ -37,6 +37,36 @@ exports.service = (req, res, next) => {
   });
 };
 
+exports.getService = (req, res, next) => {
+  const serviceId = req.params.serviceId;
+  Service.findById(serviceId).then(ser=>{
+    if(ser){
+      res.render("ad1000/single-service", {
+        pageTitle: "Edit Service",
+        service: ser
+      });
+    }
+    else{
+      res.render("ad1000/single-service", {
+        pageTitle: "Edit Service",
+        services: null
+      });
+    }
+  }).catch((err) => {
+    console.log(err);
+  });
+};
+
+exports.deleteService = (req, res, next) => {
+  const serviceId = req.params.serviceId;
+  console.log(serviceId)
+  Service.findOneAndDelete(serviceId).then(()=>{
+    res.redirect("/ad1000/service")
+  }).catch((err) => {
+    console.log(err);
+  });
+};
+
 exports.news = (req, res, next) => {
   News.find().then(ser=>{
     if(ser){
@@ -51,6 +81,16 @@ exports.news = (req, res, next) => {
         news: null
       });
     }
+  }).catch((err) => {
+    console.log(err);
+  });
+};
+
+exports.deteleNews = (req, res, next) => {
+  const newsId = req.params.serviceId;
+  console.log(newsId)
+  News.findOneAndDelete(newsId).then(()=>{
+    res.redirect("/ad1000/news")
   }).catch((err) => {
     console.log(err);
   });
@@ -75,6 +115,18 @@ exports.carousel = (req, res, next) => {
     console.log(er)
   })
 };
+
+
+exports.deteleCarousel = (req, res, next) => {
+  const carouselId = req.params.serviceId;
+  console.log(carouselId)
+  Carousel.findOneAndDelete(carouselId).then(()=>{
+    res.redirect("/ad1000/carousel")
+  }).catch((err) => {
+    console.log(err);
+  });
+};
+
 
 exports.addCompany = (req, res, next) => {
   const name = req.body.cName;
@@ -161,6 +213,40 @@ exports.addService = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.editService = (req, res, next) => {
+  const cImg = req.file;
+  console.log(cImg)
+  let oldImage = req.body.oldImage;
+  const sId = req.body.sId;
+  const name = req.body.sName;
+  const title = req.body.sTitle;
+  const description = req.body.sDescription;
+  if(cImg!=undefined){
+    oldImage = cImg.path;
+  }
+  Service.findById(sId).then(ser=>{
+    if(ser){
+        ser.name = name;
+        ser.title = title;
+        ser.description = description;
+        ser.imgPath = oldImage;
+        ser.save().then(ss=>{
+          res.redirect("/ad1000/service")
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    else{
+      res.redirect("/ad1000/service")
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+};
+
 
 exports.addNews = (req, res, next) => {
   const name = req.body.nName;

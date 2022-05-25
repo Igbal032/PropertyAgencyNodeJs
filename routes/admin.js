@@ -15,6 +15,17 @@ router.get("/service", adminController.service)
 router.get("/news", adminController.news)
 // url -> /ad1000/carousel
 router.get("/carousel", adminController.carousel)
+//url -> /ad1000/services/:serId
+router.get("/services/edit/:serviceId", adminController.getService)
+
+router.get("/services/delete/:serviceId", adminController.deleteService)
+
+router.get("/news/delete/:newsId", adminController.deteleNews)
+
+router.get("/carousels/delete/:newsId", adminController.deteleCarousel)
+
+router.post("/editService", adminController.editService)
+
                 // POST methods 
 // url -> /ad1000/index
 router.post("/index", adminController.addCompany)

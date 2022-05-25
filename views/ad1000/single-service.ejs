@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+
+        <%- include('./includes/navigation.ejs') %>
+
+        <div class="container mt-5 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-md-8 col-12">
+                    <h4 class="text-center">Xidmət Əlavə et</h4>
+                    <form action="/ad1000/editService" method="post" enctype="multipart/form-data">
+                        <input type="hidden" value="<%=service.id%>" name="sId">
+                        <div class="form-group">
+                            <label for="nameId">Xidmətin adı</label>
+                            <input value="<%=service.name%>" type="text" class="form-control" name="sName" id="nameId"
+                                placeholder="Xidmətin adını daxil et">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sTitle">Başlıq</label>
+                            <input value="<%=service.title%>" type="text" name="sTitle" class="form-control" id="sTitle"
+                                placeholder="Başlıq daxil et">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="imgPathId">Şəkil</label>
+                            <br>
+                            <input type="hidden" name="oldImage" value="<%=service.imgPath%>">
+                            <img src="/<%=service.imgPath%>" style="width: 300PX;object-fit: cover;" alt="">
+                            <input type="file" name="image" class="form-control" id="imgPathId">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descriptionId">Təsviri</label>
+                            <textarea name="sDescription" class="form-control" id="descriptionId"
+                                placeholder="Təsviri daxil et" rows="5"> <%=service.description%></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Redaktə et</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+            <%- include('../includes/end.ejs') %>

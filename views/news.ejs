@@ -34,19 +34,18 @@
         <div class="col-lg-8 mb-5 mb-lg-0">
           <% for(let singleNews of allNews) {%>
             <div class="post">
-              <div class="post-media post-image">
-                <img loading="lazy" src="/<%=singleNews.imgPath%>" class="img-fluid w-100" alt="post-image">
+              <div class="post-media post-image" style="height: 507px">
+                <img style="height: 100%;object-fit: cover;" loading="lazy" src="/<%=singleNews.imgPath%>" class="img-fluid w-100" alt="post-image">
               </div>
     
               <div class="post-body">
                 <div class="entry-header">
                   <h2 class="entry-title">
-                    <a href="/news1"><%=singleNews.title%></a>
+                    <a href="/news/<%=singleNews.id%>"><%=singleNews.title%></a>
                   </h2>
                 </div><!-- header end -->
-    
                 <div class="entry-content">
-                  <p><%=singleNews.description%></p>
+                  <p style="height: 130px;overflow: hidden;word-break: break-all;"><%=singleNews.description%></p>
                 </div>
     
                 <div class="post-footer">

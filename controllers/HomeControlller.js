@@ -2,11 +2,30 @@ const Company = require("../models/company");
 const News = require("../models/news");
 const Services = require("../models/service");
 const Carousel = require("../models/carousel");
+const company = require("../models/company");
 
 
 
 exports.homePage = (req, res, next) => {
     let carousel;
+    let servicesRES;
+    let newsRes;
+    News.find()
+    .then((allNews) => {
+      if (allNews) {
+        newsRes = allNews
+      } else {
+        newsRes = null
+      }
+    })
+    Services.find().then(ser=>{
+      if(ser){
+        servicesRES = ser
+      }
+      else{
+        servicesRES = null
+      }
+    })
   Company.findOne()
     .then((company) => {
       if (company) {
@@ -15,7 +34,9 @@ exports.homePage = (req, res, next) => {
             return res.status(200).render("index", {
                 pageTitle: "Home",
                 company: company,
-                carousels:carousel
+                carousels:carousel,
+                services:servicesRES,
+                allNews2:newsRes
               });
         })
         .catch(err=>{
@@ -25,7 +46,8 @@ exports.homePage = (req, res, next) => {
         return res.status(200).render("index", {
           pageTitle: "Home",
           company: null,
-          carousels:carousel
+          carousels:carousel,
+          services:servicesRES
         });
       }
     })
@@ -82,7 +104,7 @@ exports.news = (req, res, next) => {
         console.log(company2.email+" salam")
         company = company2;
       }
-      News.find()
+    News.find()
     .then((ser) => {
       if (ser) {
         res.status(200).render("news", {
@@ -146,10 +168,32 @@ exports.singleService = (req, res, next) => {
 };
 
 exports.singleNews = (req, res, next) => {
-  res.status(200).render("single-pages/single-news", {
-    pageTitle: "News",
-    company: null,
-  });
+  const newsId = req.params.newsId;
+  Company.findOne().then(company=>{
+    News.findById(newsId).then(news=>{
+      if(news){
+        res.status(200).render("single-pages/single-news", {
+          pageTitle: "Xəbərlər",
+          company: company,
+          news:news
+        });
+      }
+      else{
+        res.status(200).render("single-pages/single-news", {
+          pageTitle: "Xəbərlər",
+          company: null,
+          news:null
+        });
+      }
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+  
 };
 
 exports.projects = (req, res, next) => {
