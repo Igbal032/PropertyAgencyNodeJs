@@ -2,8 +2,6 @@ const Company = require("../models/company");
 const News = require("../models/news");
 const Services = require("../models/service");
 const Carousel = require("../models/carousel");
-const company = require("../models/company");
-
 
 
 exports.homePage = (req, res, next) => {
@@ -161,10 +159,33 @@ exports.services = (req, res, next) => {
 };
 
 exports.singleService = (req, res, next) => {
-  res.status(200).render("single-pages/single-service", {
-    pageTitle: "Service",
-    company: null,
-  });
+ 
+  const serviceId = req.params.serviceId;
+  Company.findOne().then(company=>{
+    Services.findById(serviceId).then(ser=>{
+      if(ser){
+        res.status(200).render("single-pages/single-service", {
+          pageTitle: "Xidmətlər",
+          company: company,
+          service:ser
+        });
+      }
+      else{
+        res.status(200).render("single-pages/single-news", {
+          pageTitle: "Xəbərlər",
+          company: null,
+          news:null
+        });
+      }
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+  
 };
 
 exports.singleNews = (req, res, next) => {

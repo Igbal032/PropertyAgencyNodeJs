@@ -30,14 +30,13 @@
 <section id="main-container" class="main-container">
     <div class="container">
       <div class="row justify-content-center">
-  
-        <div class="col-lg-8 mb-5 mb-lg-0">
-          <% for(let singleNews of allNews) {%>
+        <% for(let singleNews of allNews) {%>
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          
             <div class="post">
-              <div class="post-media post-image" style="height: 507px">
-                <img style="height: 100%;object-fit: cover;" loading="lazy" src="/<%=singleNews.imgPath%>" class="img-fluid w-100" alt="post-image">
+              <div class="post-media post-image">
+                <img style="max-height: 230px;min-height: 230px;object-fit: cover;" loading="lazy" src="/<%=singleNews.imgPath%>" class="img-fluid w-100" alt="post-image">
               </div>
-    
               <div class="post-body">
                 <div class="entry-header">
                   <h2 class="entry-title">
@@ -49,13 +48,12 @@
                 </div>
     
                 <div class="post-footer">
-                  <a href="/news1" class="btn btn-primary">Continue Reading</a>
+                  <a href="/news/<%=singleNews.id%>" class="btn btn-primary">Ətraflı...</a>
                 </div>
     
               </div><!-- post-body end -->
             </div><!-- 1st post end -->
     
-          <%}%>
         
           <!-- <nav class="paging" aria-label="Page navigation example">
             <ul class="pagination">
@@ -68,6 +66,7 @@
           </nav> -->
   
         </div><!-- Content Col end -->
+        <%}%>
 
       </div><!-- Main row end -->
   

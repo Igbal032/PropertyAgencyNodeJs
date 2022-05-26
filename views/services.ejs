@@ -35,16 +35,16 @@
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="ts-service-box">
               <div class="ts-service-image-wrapper">
-                <img loading="lazy" class="w-100" src="/<%=ser.imgPath%>" alt="service-image">
+                <img loading="lazy"  style="min-height: 214px;max-height: 214px; object-fit: cover;" class="w-100" src="/<%=ser.imgPath%>" alt="service-image">
               </div>
               <div class="d-flex">
                 <div class="ts-service-box-img">
                   <img loading="lazy" src="images/icon-image/service-icon1.png" alt="service-icon">
                 </div>
                 <div class="ts-service-info">
-                  <h3 class="service-box-title"><a href="/services1"><%=ser.title%></a></h3>
+                  <h3 class="service-box-title"><a href="/services/<%=ser.id%>"><%=ser.title%></a></h3>
                   <p style="height: 130px;overflow: hidden;word-break: break-all;"><%=ser.description%></p>
-                  <a class="learn-more d-inline-block" href="/services1" aria-label="service-details"><i
+                  <a class="learn-more d-inline-block" href="/services/<%=ser.id%>" aria-label="service-details"><i
                       class="fa fa-caret-right"></i> Learn more</a>
                 </div>
               </div>

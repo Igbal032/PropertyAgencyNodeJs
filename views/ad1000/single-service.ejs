@@ -37,6 +37,7 @@
                                 placeholder="Təsviri daxil et" rows="5"> <%=service.description%></textarea>
                         </div>
 
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <button type="submit" class="btn btn-primary">Redaktə et</button>
                     </form>
                 </div>

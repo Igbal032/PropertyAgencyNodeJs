@@ -3530,6 +3530,10 @@ label {
   border: 1px solid transparent;
 }
 
+.invalid{
+  border-color: red;
+}
+
 /* Error page
 ================================================== */
 .error-page .error-code h2 {

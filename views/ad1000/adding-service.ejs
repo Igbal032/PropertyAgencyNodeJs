@@ -8,17 +8,29 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-md-8 col-12">
                         <h4 class="text-center">Xidmət Əlavə et</h4>
+                        <% if (errorMessage) { %>
+                            <div class="text-danger"><%= errorMessage%></div>
+                        <% } %>
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="nameId">Xidmətin adı</label>
-                                <input type="text" class="form-control" name="sName" id="nameId"
-                                    placeholder="Xidmətin adını daxil et">
+                                <input
+                                 type="text" 
+                                 class="form-control  <%= validationErrors.find(e => e.param === 'name') ? 'invalid' : '' %>" 
+                                 name="sName" id="nameId"
+                                 value="<% if (hasError) { %><%= singleService.name %><% } %>"
+                                 placeholder="Xidmətin adını daxil et">
                             </div>
 
                             <div class="form-group">
                                 <label for="sTitle">Başlıq</label>
-                                <input type="text" name="sTitle" class="form-control" id="sTitle"
-                                    placeholder="Başlıq daxil et">
+                                <input 
+                                type="text" 
+                                name="sTitle" 
+                                class="form-control <%= validationErrors.find(e => e.param === 'title') ? 'invalid' : '' %>" 
+                                id="sTitle"
+                                value="<% if (hasError) { %><%= singleService.title %><% } %>"
+                                placeholder="Başlıq daxil et">
                             </div>
 
                             <div class="form-group">
@@ -28,10 +40,14 @@
 
                             <div class="form-group">
                                 <label for="descriptionId">Təsviri</label>
-                                <textarea name="sDescription" class="form-control" id="descriptionId"
-                                    placeholder="Təsviri daxil et" rows="5"></textarea>
+                                <textarea
+                                 name="sDescription"
+                                  class="form-control <%= validationErrors.find(e => e.param === 'description') ? 'invalid' : '' %>"
+                                  id="descriptionId"
+                                  placeholder="Təsviri daxil et" rows="5">
+                                    <% if (hasError) { %><%= singleService.description %><% } %></textarea>
                             </div>
-
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <button type="submit" class="btn btn-primary">Əlavə et</button>
                         </form>
                     </div>
@@ -45,7 +61,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-12">
                             <div class="card" style="width: 100%; height: max-content;">
                                 <div class="imgDiv" style="height: 200px">
-                                    <img style='object-fit: cover;height: 100%;' class="card-img-top" src="/<%= service.imgPath%>" alt="Card image cap">
+                                    <img style='object-fit: cover;height: 100%;' class="card-img-top" src="<%= (service.imgPath.length < 6) ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png' : ('/'+service.imgPath)%>" alt="Card image cap">
                                 </div>
                                 <div class="card-body">
                                   <h5 class="card-title"><%=service.name%></h5>

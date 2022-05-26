@@ -8,8 +8,19 @@ const errorController = require("./controllers/ErrorController");
 const homeRouter = require("./routes/home");
 const adminRouter = require("./routes/admin");
 const { randomInt } = require("crypto");
+const csrf = require('csurf');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const app = express();
+const csrfProtection = csrf();
+
+
+const store = new MongoDBStore({
+  uri: "mongodb://localhost:27017/property",
+  collection: 'sessions'
+});
+
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => { 
     cb(null, "images");
@@ -39,6 +50,25 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/images",express.static(path.join(__dirname, "images")));
+
+
+app.use(
+  session({
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: false,
+    store: store
+  })
+);
+
+app.use(csrfProtection);
+
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 app.use("/ad1000", adminRouter);
 app.use(homeRouter);

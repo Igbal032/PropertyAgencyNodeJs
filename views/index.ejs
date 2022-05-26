@@ -9,7 +9,7 @@
 <div class="banner-carousel banner-carousel-2 mb-0">
   <% for (let carousel of carousels) { %>
     <div class="banner-carousel-item">
-      <img class="" style="object-fit:cover" src="/<%=carousel.imgPath%>" alt="">
+      <img class="" style="object-fit:cover" src="<%= (carousel.imgPath.length < 6) ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png' : ('/'+carousel.imgPath)%>" alt="">
       <div class="container">
           <div class="box-slider-content">
             <div class="box-slider-text">
@@ -46,27 +46,36 @@
 
 <section id="ts-features" class="ts-features pb-2">
   <div class="container">
+    <div class="row text-center">
+      <div class="col-12">
+        <h3 class="section-sub-title">Xidmətlər</h3>
+      </div>
+  </div>
     <div class="row">
         <% for(let service of services) { %>
         <div class="col-lg-4 col-md-6 mb-5">
           <div class="ts-service-box">
               <div class="ts-service-image-wrapper">
-                <img loading="lazy" class="w-100" src="/<%=service.imgPath%>" alt="service-image">
+                <img style="max-height: 245px;min-height: 245px;width: 100%;object-fit: cover;" loading="lazy" class="w-100" src="<%= (service.imgPath.length < 6) ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png' : ('/'+service.imgPath)%>" alt="service-image">
               </div>
               <div class="d-flex">
                 <div class="ts-service-box-img">
                     <img loading="lazy" src="images/icon-image/service-icon1.png" alt="service-icon" />
                 </div>
                 <div class="ts-service-info">
-                    <h3 class="service-box-title"><a href="service-single.html"><%=service.title%></a></h3>
+                    <h3 class="service-box-title"><a href="/services/<%=service.id%>"><%=service.title%></a></h3>
                     <p style="height: 130px;overflow: hidden;word-break: break-all;"><%=service.description%></p>
-                    <a class="learn-more d-inline-block" href="service-single.html" aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
+                    <a class="learn-more d-inline-block" href="/services/<%=service.id%>" aria-label="service-details"><i class="fa fa-caret-right"></i>Ətraflı...</a>
                 </div>
               </div>
           </div><!-- Service1 end -->
         </div><!-- Col 1 end -->
         <%}%>
     </div><!-- Content row end -->
+    
+    <div class="general-btn text-center mt-4">
+      <a class="btn btn-primary" href="/services">Bütün Xidmətlər</a>
+  </div>
   </div><!-- Container end -->
 </section><!-- Feature are end -->
 
@@ -210,8 +219,7 @@
   <div class="container">
     <div class="row text-center">
         <div class="col-12">
-          <h2 class="section-title">Work of Excellence</h2>
-          <h3 class="section-sub-title">Recent Projects</h3>
+          <h3 class="section-sub-title">Xəbətlər</h3>
         </div>
     </div>
     <!--/ Title row end -->
@@ -222,7 +230,7 @@
           <div class="latest-post">
               <div class="latest-post-media">
                 <a href="/news/<%=n.id%>" class="latest-post-img">
-                    <img style="height: 245px;width: 100%;object-fit: cover;" loading="lazy" class="img-fluid" src="/<%=n.imgPath%>" alt="img">
+                    <img style="max-height: 245px;min-height: 245px;width: 100%;object-fit: cover;" loading="lazy" class="img-fluid" src="<%= (n.imgPath.length < 6) ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png' : ('/'+n.imgPath)%>" alt="img">
                 </a>
               </div>
               <div class="post-body">
@@ -243,7 +251,7 @@
     <!--/ Content row end -->
 
     <div class="general-btn text-center mt-4">
-        <a class="btn btn-primary" href="news-left-sidebar.html">See All Posts</a>
+        <a class="btn btn-primary" href="/news">Bütün Xəbətlər</a>
     </div>
 
   </div>

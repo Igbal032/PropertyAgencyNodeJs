@@ -32,6 +32,7 @@
                                     placeholder="Təsviri daxil et" rows="5"></textarea>
                             </div>
 
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <button type="submit" class="btn btn-primary">Əlavə et</button>
                         </form>
                     </div>
@@ -46,7 +47,7 @@
                             <div class="card" style="width: 100%; height: max-content;">
                                 <div class="imgDiv" style="height: 200px">
                                     <img style='object-fit: cover;height: 100%;' class="card-img-top"
-                                        src="/<%= n.imgPath%>" alt="Card image cap">
+                                        src="<%= (n.imgPath.length < 6) ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/2214px-How_to_use_icon.svg.png' : ('/'+n.imgPath)%>" alt="Card image cap">
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">

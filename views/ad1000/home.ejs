@@ -38,7 +38,13 @@
                                 <textarea name="cAddress" class="form-control" id="addressId"
                                     placeholder="Şirkətin adresini daxil et" rows="5" ><%= company==null?'':company.address%></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="aboutId">Şirkət haqqInda</label>
+                                <textarea name="cAbout" class="form-control" id="aboutId"
+                                    placeholder="Şirkətin adresini daxil et" rows="5" ><%= company==null?'':company.about%></textarea>
+                            </div>
                             
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <button type="submit" class="btn btn-primary"><%= company==null?'Əlavə et':'Redaktə et'%></button>
                         </form>
                     </div>

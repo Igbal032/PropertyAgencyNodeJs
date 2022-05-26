@@ -8,6 +8,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
+                <% if (isAuthenticated) { %>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/ad1000/index">Əsas səhifə</a>
                 </li>
@@ -20,6 +21,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/ad1000/carousel">Karusel əlavə et</a>
                 </li>
+                <li class="nav-item">
+                    <form action="/ad1000/logout" method="post">
+                        
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+                <%}%>
             </ul>
         </div>
     </div>
